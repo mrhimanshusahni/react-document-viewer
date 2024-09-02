@@ -10,6 +10,7 @@ import {
   FileNumber,
 } from "./custom-file-header-components";
 import { DocumentFileType } from "~/utils/types";
+import { getFileNameFromFileURL } from "~/utils/helper-functions/file-name-helpers";
 
 const CustomFileHeader = ({
   documentArray,
@@ -23,6 +24,7 @@ const CustomFileHeader = ({
   // console.log("currentFileNumber :>> ", currentFileNumber);
 
   const totalDocuments = documentArray?.length;
+  const fileName = getFileNameFromFileURL(currentFile?.documentUrl);
 
   useEffect(() => {
     if (!currentFile) {
@@ -31,11 +33,12 @@ const CustomFileHeader = ({
   }, [currentFile, documentArray, setCurrentFile]);
 
   return (
-    <div className="absolute left-0 right-0 top-0 z-50 bg-[#212121] p-2">
+    <div className="absolute -top-14 z-50 w-full bg-[#212121] p-2">
       <CustomFileHeaderLayout>
-        <FileNameLayout file={currentFile}>
-          {`${currentFile?.documentName}.${currentFile?.documentType}`}
+        <FileNameLayout file={currentFile} fileName={fileName}>
+          {fileName}
         </FileNameLayout>
+
         <FileNumber>
           Document {currentFile?.id} of {totalDocuments}
         </FileNumber>

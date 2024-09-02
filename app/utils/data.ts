@@ -17,7 +17,7 @@ export const documentArray: DocumentFileType[] = [
   {
     documentName: "dummy-report-2",
     documentType: "pdf",
-    documentUrl: "/dummy-report-2",
+    documentUrl: "/dummy-report-2.pdf",
     id: 3,
   },
   {

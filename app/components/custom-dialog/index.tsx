@@ -6,7 +6,8 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTrigger,
+  DialogTitle,
+  VisuallyHidden,
 } from "~/components/custom-dialog/custom-dialog-base";
 import { CurrentFileContext } from "~/utils/context/use-context-helper";
 import { documentArray } from "~/utils/data";
@@ -29,10 +30,12 @@ const CustomDialog = ({ isOpen, setIsOpen }: CustomDialogProps) => {
       }}
       open={isOpen}
     >
-      {/* <DialogTrigger>Open</DialogTrigger> */}
       <DialogContent>
         <CustomFileHeader documentArray={documentArray} />
         <DialogHeader>
+          <VisuallyHidden.Root>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+          </VisuallyHidden.Root>
           <CustomCarousel />
         </DialogHeader>
       </DialogContent>

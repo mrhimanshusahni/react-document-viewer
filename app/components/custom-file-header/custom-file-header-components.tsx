@@ -1,17 +1,18 @@
 // External Dependencies
+import { BiSolidFilePdf } from "react-icons/bi";
 import { FiDownload } from "react-icons/fi";
 import { MdPhoto } from "react-icons/md";
-import { BiSolidFilePdf } from "react-icons/bi";
 
 // Internal Dependencies
 import { cnm } from "~/utils/class-name-helpers";
 import { DocumentTypeExtension, FileNameLayoutProps } from "~/utils/types";
+import { CustomToolTip } from "../custom-tool-tip";
 
-const FileName = ({ children, className }: React.ComponentProps<"span">) => {
+const FileName = ({ children, className }: React.ComponentProps<"div">) => {
   return (
-    <span className={cnm("text-lg font-medium text-white", className)}>
-      {children}
-    </span>
+    <div className={cnm("max-w-md truncate", className)}>
+      <span className="text-lg font-medium text-white">{children}</span>
+    </div>
   );
 };
 
@@ -27,11 +28,17 @@ const FileIcon = ({
   );
 };
 
-const FileNameLayout = ({ className, children, file }: FileNameLayoutProps) => {
+const FileNameLayout = ({
+  className,
+  children,
+  file,
+  fileName,
+}: FileNameLayoutProps) => {
   return (
-    <div className={cnm("flex items-center gap-x-2", className)}>
+    <div className={cnm("flex items-center justify-around gap-x-2", className)}>
       <FileIcon documentType={file?.documentType} />
       <FileName>{children}</FileName>
+      <CustomToolTip toolTipMessage={fileName} />
     </div>
   );
 };
@@ -53,7 +60,7 @@ const FileDownloadButton = ({ documentUrl }: { documentUrl: string }) => {
   return (
     <a
       href={documentUrl}
-      className="flex max-w-fit items-center gap-x-2 rounded-full bg-blue-300 p-2 px-4"
+      className="flex max-w-fit items-center gap-x-2 rounded-full bg-blue-300 p-2 px-4 hover:bg-blue-400"
       target="_blank"
       rel="noreferrer"
       title="Download"

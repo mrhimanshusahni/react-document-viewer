@@ -18,6 +18,7 @@ export interface ImageStateActionType {
 
 export interface FileNameLayoutProps extends React.ComponentProps<"div"> {
   file: DocumentFileType;
+  fileName: string;
 }
 
 export type ImageDispatchActionType = React.Dispatch<ImageStateActionType>;
